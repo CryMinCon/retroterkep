@@ -1,0 +1,31 @@
+[build]
+  publish = "dist"
+  command = "node scripts/check.mjs"
+
+[build.processing]
+  skip_processing = false
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self' mailto:"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/koszonjuk.html"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[redirects]]
+  from = "https://www.retroterkep.hu/*"
+  to = "https://retroterkep.hu/:splat"
+  status = 301
+  force = true

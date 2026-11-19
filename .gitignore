@@ -1,0 +1,7 @@
+.openai/
+.netlify/
+node_modules/
+review/
+dist/_review/
+*.zip
+.DS_Store
