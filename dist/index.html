@@ -17,8 +17,8 @@
   <meta property="og:image:alt" content="Az eredeti távolságmutató térkép előlapja">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="preload" href="/assets/fonts/OpenSans-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css">
-  <script type="module" src="/assets/app.js"></script>
+  <link rel="stylesheet" href="/assets/style.css?v=20261121-nocalc">
+  <script type="module" src="/assets/app.js?v=20261121-nocalc"></script>
 </head>
 <body>
   <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>
@@ -98,12 +98,10 @@
     <section class="prices section" id="arak" aria-labelledby="price-title">
       <div class="container price-grid">
         <div><p class="eyebrow pink-text">MENNYISÉGI ÁRAK</p><h2 id="price-title">TÖBB DARAB.<br><em>jobb ár.</em></h2><p>Az eredeti ajánlat nettó egységárai alapján. Kérj pontosítást a gyártásról és a szállításról!</p>
-          <table class="price-table"><caption class="visually-hidden">Mennyiségi nettó egységárak</caption><thead><tr><th scope="col">MENNYISÉG</th><th scope="col">NETTÓ / DB</th></tr></thead><tbody><tr data-price-tier="0" class="active"><th scope="row">500–1000 db</th><td>1 450 Ft</td></tr><tr data-price-tier="1"><th scope="row">1001–2000 db</th><td>1 250 Ft</td></tr><tr data-price-tier="2"><th scope="row">2001–3000 db</th><td>1 000 Ft</td></tr><tr data-price-tier="3"><th scope="row">3001–4000 db</th><td>800 Ft</td></tr></tbody></table>
+          <table class="price-table"><caption class="visually-hidden">Mennyiségi nettó egységárak</caption><thead><tr><th scope="col">MENNYISÉG</th><th scope="col">NETTÓ / DB</th></tr></thead><tbody><tr data-price-tier="0"><th scope="row">500–1000 db</th><td>1 450 Ft</td></tr><tr data-price-tier="1"><th scope="row">1001–2000 db</th><td>1 250 Ft</td></tr><tr data-price-tier="2"><th scope="row">2001–3000 db</th><td>1 000 Ft</td></tr><tr data-price-tier="3"><th scope="row">3001–4000 db</th><td>800 Ft</td></tr></tbody></table>
         </div>
-        <div class="calculator">
-          <p class="eyebrow" id="example-label">PÉLDA: 500 DARAB</p><div class="total"><output id="price-net">725 000</output><span>Ft <small>+ ÁFA</small></span></div>
-          <p class="gross" aria-live="polite" aria-atomic="true">Bruttó összeg: <output id="price-gross">920 750</output> Ft.</p>
-          <div class="quantity-control"><label for="quantity">Darabszám</label><div class="quantity-input"><button type="button" id="quantity-minus" aria-label="100 darabbal kevesebb" disabled>−</button><input type="number" id="quantity" min="500" max="4000" step="1" value="500" inputmode="numeric"><button type="button" id="quantity-plus" aria-label="100 darabbal több">+</button><span>db</span></div><input type="range" id="quantity-range" min="500" max="4000" value="500" step="1" aria-label="Darabszám kiválasztása"><p class="unit-price"><output id="price-unit">1 450</output> Ft + ÁFA / db</p></div>
+        <div class="price-panel">
+          <p class="eyebrow">KÉRJ EGYEDI AJÁNLATOT!</p>
           <div class="price-terms"><p>Az ár tartalmazza a reklám elkészítését az eredeti ajánlat szerint.</p><p>Fizetés: 50% előleg, további 50% szállítás előtt 14 nappal.</p><p>Az 500 darabos minimum több megrendelő között is megosztható az eredeti ajánlat alapján.</p></div>
           <button class="button button-yellow" type="button" data-open-quote>ERRE KÉREK AJÁNLATOT</button>
         </div>

@@ -1,36 +1,3 @@
-import {calculatePrice, MIN_QUANTITY, MAX_QUANTITY} from './pricing.js';
-
-const number = new Intl.NumberFormat('hu-HU');
-const quantity = document.querySelector('#quantity');
-const range = document.querySelector('#quantity-range');
-const minus = document.querySelector('#quantity-minus');
-const plus = document.querySelector('#quantity-plus');
-let selectedQuantity = MIN_QUANTITY;
-
-function setQuantity(value) {
-  const candidate = Number(value);
-  const count = Math.max(MIN_QUANTITY, Math.min(MAX_QUANTITY, Number.isFinite(candidate) ? Math.round(candidate) : MIN_QUANTITY));
-  const price = calculatePrice(count);
-  selectedQuantity = count;
-  quantity.value = String(count);
-  range.value = String(count);
-  document.querySelector('#example-label').textContent = `PÉLDA: ${number.format(count)} DARAB`;
-  document.querySelector('#price-net').textContent = number.format(price.net);
-  document.querySelector('#price-gross').textContent = number.format(price.gross);
-  document.querySelector('#price-unit').textContent = number.format(price.unit);
-  document.querySelectorAll('[data-price-tier]').forEach(row => row.classList.toggle('active', Number(row.dataset.priceTier) === price.tier));
-  minus.disabled = count === MIN_QUANTITY;
-  plus.disabled = count === MAX_QUANTITY;
-}
-quantity.addEventListener('input', () => {
-  const count = Number(quantity.value);
-  if (quantity.value && Number.isInteger(count) && count >= MIN_QUANTITY && count <= MAX_QUANTITY) setQuantity(count);
-});
-quantity.addEventListener('change', () => setQuantity(quantity.value));
-range.addEventListener('input', () => setQuantity(range.value));
-minus.addEventListener('click', () => setQuantity(selectedQuantity - 100));
-plus.addEventListener('click', () => setQuantity(selectedQuantity + 100));
-
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#main-nav');
 function closeMenu() {
@@ -104,10 +71,8 @@ function openDialog(dialog, trigger) {
   syncDialogScroll();
 }
 document.querySelectorAll('[data-open-quote]').forEach(trigger => trigger.addEventListener('click', () => {
-  if (!quoteQuantity.dataset.touched || trigger.closest('.calculator')) quoteQuantity.value = String(selectedQuantity);
   openDialog(quoteDialog, trigger);
 }));
-quoteQuantity.addEventListener('input', () => {quoteQuantity.dataset.touched = 'true';});
 document.querySelectorAll('[data-open-privacy]').forEach(trigger => trigger.addEventListener('click', () => openDialog(privacyDialog, trigger)));
 document.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
 allDialogs.forEach(dialog => {
