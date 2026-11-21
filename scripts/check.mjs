@@ -27,13 +27,9 @@ const copy=[
  'A térkép kiválasztott kiindulópontból segít leolvasni a városok közötti távolságokat. A klasszikus papíralapú használat ma már önmagában is élmény.',
  'Logó, szlogen, szolgáltatás és elérhetőség: a hátoldal a te márkádnak dolgozhat.',
  'Mindhárom grafika bemutató, nem valós ügyfélreferencia.',
- 'Az eredeti ajánlat nettó egységárai alapján. Kérj pontosítást a gyártásról és a szállításról!',
- 'Az ár tartalmazza a reklám elkészítését az eredeti ajánlat szerint.',
- 'Fizetés: 50% előleg, további 50% szállítás előtt 14 nappal.',
- 'Az 500 darabos minimum több megrendelő között is megosztható az eredeti ajánlat alapján.',
  'Az ajánlat 500 darabos minimum mennyiséget jelöl, amely több megrendelő között is megosztható.',
- 'Igen, a hátoldal egyedi céges grafikával készülhet. Előlapi reklám külön felár ellenében kérhető.',
- 'Az eredeti ajánlatban a reklám elkészítése a feltüntetett ár része.',
+ 'Igen, a hátoldal egyedi céges grafikával készülhet. Az előlapi megjelenés lehetőségeit külön egyeztetjük.',
+ 'A hátoldali grafika a cég arculatához és az egyeztetett elképzelésekhez igazodik.',
  'A gyártási határidő és a szállítás módja egyedi egyeztetést igényel.',
  'Írj, mekkora mennyiségre és milyen céges megjelenésre gondoltál.'
 ];
