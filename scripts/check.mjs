@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const dist=path.join(root,'dist');
 const html=fs.readFileSync(path.join(dist,'index.html'),'utf8');
-const pages=['index.html','koszonjuk.html','404.html'];
+const pages=['index.html','koszonjuk.html','404.html','mukodes/index.html'];
 for(const page of pages){
   const source=fs.readFileSync(path.join(dist,page),'utf8');
   const ids=[...source.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
