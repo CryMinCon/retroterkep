@@ -150,6 +150,7 @@ function selectLogo(key, updateUrl = false) {
   if (!Object.hasOwn(logoConcepts, key)) key = Object.hasOwn(logoGroups, key) ? Object.keys(logoConcepts).find(id => logoConcepts[id].group === key) : '07';
   const concept = logoConcepts[key];
   selectedLogoKey = key;
+  document.documentElement.classList.toggle('badge-logo-preview', ['oval', 'circle', 'map-oval', 'map-circle'].includes(concept.form));
   document.querySelectorAll('[data-logo-artwork]').forEach(artwork => {
     artwork.className = `logo-artwork logo-artwork--${key}`;
     const image = artwork.querySelector('img');

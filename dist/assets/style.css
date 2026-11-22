@@ -348,3 +348,36 @@ html{scroll-padding-top:140px}
 .logo-preview-stage{height:310px;margin-top:0}
 @media(max-width:800px){.logo-review-layout{grid-template-columns:1fr;gap:20px}}
 @media(max-width:640px){.brand .logo-artwork{width:var(--logo-mobile-width);max-width:100%;max-height:none}.logo-options{gap:8px}.logo-options button{padding:9px 7px;font-size:11px;min-height:46px}.logo-preview-stage{height:225px;padding:14px;margin-top:0}.logo-preview-stage .logo-artwork{max-width:var(--logo-mobile-preview-width)}}
+
+/* Larger circular and oval logo previews, retaining every existing URL. */
+.logo-artwork--01-oval{--logo-review-width:755.714px;--logo-mobile-preview-width:451.786px;--logo-brand-width:170.857px;--logo-mobile-width:157.714px}
+.logo-artwork--01-circle{--logo-review-width:456.085px;--logo-mobile-preview-width:272.660px;--logo-brand-width:103.115px;--logo-mobile-width:95.183px}
+.logo-artwork--01-map-oval{--logo-review-width:720.843px;--logo-mobile-preview-width:430.939px;--logo-brand-width:162.973px;--logo-mobile-width:150.437px}
+.logo-artwork--01-map-circle{--logo-review-width:457.771px;--logo-mobile-preview-width:273.667px;--logo-brand-width:103.496px;--logo-mobile-width:95.535px}
+.logo-artwork--02-oval{--logo-review-width:749.764px;--logo-mobile-preview-width:448.228px;--logo-brand-width:169.512px;--logo-mobile-width:156.472px}
+.logo-artwork--02-circle{--logo-review-width:455.137px;--logo-mobile-preview-width:272.093px;--logo-brand-width:102.901px;--logo-mobile-width:94.985px}
+.logo-artwork--02-map-oval{--logo-review-width:709.465px;--logo-mobile-preview-width:424.136px;--logo-brand-width:160.401px;--logo-mobile-width:148.062px}
+.logo-artwork--02-map-circle{--logo-review-width:471.602px;--logo-mobile-preview-width:281.936px;--logo-brand-width:106.623px;--logo-mobile-width:98.421px}
+.logo-artwork--03-oval{--logo-review-width:753.720px;--logo-mobile-preview-width:450.594px;--logo-brand-width:170.406px;--logo-mobile-width:157.298px}
+.logo-artwork--03-circle{--logo-review-width:457.070px;--logo-mobile-preview-width:273.248px;--logo-brand-width:103.338px;--logo-mobile-width:95.389px}
+.logo-artwork--03-map-oval{--logo-review-width:719.677px;--logo-mobile-preview-width:430.242px;--logo-brand-width:162.710px;--logo-mobile-width:150.194px}
+.logo-artwork--03-map-circle{--logo-review-width:457.677px;--logo-mobile-preview-width:273.611px;--logo-brand-width:103.475px;--logo-mobile-width:95.515px}
+.logo-artwork--04-oval{--logo-review-width:749.764px;--logo-mobile-preview-width:448.228px;--logo-brand-width:169.512px;--logo-mobile-width:156.472px}
+.logo-artwork--04-circle{--logo-review-width:454.128px;--logo-mobile-preview-width:271.489px;--logo-brand-width:102.672px;--logo-mobile-width:94.774px}
+.logo-artwork--04-map-oval{--logo-review-width:718.007px;--logo-mobile-preview-width:429.244px;--logo-brand-width:162.332px;--logo-mobile-width:149.845px}
+.logo-artwork--04-map-circle{--logo-review-width:460.728px;--logo-mobile-preview-width:275.435px;--logo-brand-width:104.165px;--logo-mobile-width:96.152px}
+.logo-artwork--05-oval{--logo-review-width:750.338px;--logo-mobile-preview-width:448.571px;--logo-brand-width:169.642px;--logo-mobile-width:156.592px}
+.logo-artwork--05-circle{--logo-review-width:456.126px;--logo-mobile-preview-width:272.684px;--logo-brand-width:103.124px;--logo-mobile-width:95.192px}
+.logo-artwork--05-map-oval{--logo-review-width:727.286px;--logo-mobile-preview-width:434.791px;--logo-brand-width:164.430px;--logo-mobile-width:151.781px}
+.logo-artwork--05-map-circle{--logo-review-width:456.378px;--logo-mobile-preview-width:272.835px;--logo-brand-width:103.181px;--logo-mobile-width:95.244px}
+.logo-artwork--06-oval{--logo-review-width:748.556px;--logo-mobile-preview-width:447.507px;--logo-brand-width:169.239px;--logo-mobile-width:156.220px}
+.logo-artwork--06-circle{--logo-review-width:454.153px;--logo-mobile-preview-width:271.504px;--logo-brand-width:102.678px;--logo-mobile-width:94.780px}
+.logo-artwork--06-map-oval{--logo-review-width:696.128px;--logo-mobile-preview-width:416.163px;--logo-brand-width:157.385px;--logo-mobile-width:145.279px}
+.logo-artwork--06-map-circle{--logo-review-width:466.520px;--logo-mobile-preview-width:278.898px;--logo-brand-width:105.474px;--logo-mobile-width:97.361px}
+html.badge-logo-preview{scroll-padding-top:165px}
+.badge-logo-preview .brand .logo-frame{height:104px}
+.badge-logo-preview .site-header .header-inner{min-height:144px}
+.badge-logo-preview .logo-review-layout{grid-template-columns:minmax(300px,.75fr) minmax(0,1.5fr)}
+.badge-logo-preview .logo-preview-stage{height:510px}
+@media(max-width:800px){.badge-logo-preview .logo-review-layout{grid-template-columns:1fr}}
+@media(max-width:640px){html.badge-logo-preview{scroll-padding-top:155px}.badge-logo-preview .brand .logo-frame{height:96px}.badge-logo-preview .site-header .header-inner{min-height:136px}.badge-logo-preview .logo-preview-stage{height:335px;padding:14px}}
