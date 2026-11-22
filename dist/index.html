@@ -17,16 +17,16 @@
   <meta property="og:image:alt" content="Az eredeti távolságmutató térkép előlapja">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="preload" href="/assets/fonts/OpenSans-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css?v=20261122-video">
-  <script type="module" src="/assets/app.js?v=20261121-nocalc"></script>
+  <link rel="stylesheet" href="/assets/style.css?v=20261122-logok">
+  <script type="module" src="/assets/app.js?v=20261122-logok"></script>
 </head>
 <body>
   <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>
   <header class="site-header">
     <div class="container header-inner">
       <a href="#tartalom" class="brand" aria-label="retrótérkép.hu – kezdőlap">
-        <img src="/assets/retroterkep-logo.svg" width="250" height="48" alt="retrótérkép.hu">
-        <span>TÁVOLSÁGMUTATÓ / REKLÁMAJÁNDÉK</span>
+        <span class="logo-frame"><span class="logo-artwork logo-artwork--07" data-logo-artwork><img src="/assets/logos/logo-07.webp" width="2172" height="724" alt="retroterkep – 07 Betétlap logó"></span></span>
+        <span class="brand-tagline">TÁVOLSÁGMUTATÓ / REKLÁMAJÁNDÉK</span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü megnyitása"><span></span><span></span></button>
       <nav id="main-nav" class="main-nav" aria-label="Fő navigáció">
@@ -35,6 +35,24 @@
       </nav>
     </div>
   </header>
+  <aside class="logo-review" id="logok" aria-label="Logóelőnézet">
+    <div class="container">
+      <details open>
+        <summary>Logóelőnézet – próbáld ki a három változatot!</summary>
+        <div class="logo-review-body">
+          <p>Válassz egy logót! Rögtön megjelenik a fejlécben és a nagy előnézeten.</p>
+          <div class="logo-options" role="group" aria-label="Logóváltozat kiválasztása">
+            <button type="button" data-logo-option="07" class="selected" aria-pressed="true">07 · Betétlap</button>
+            <button type="button" data-logo-option="08" aria-pressed="false">08 · Útvonal</button>
+            <button type="button" data-logo-option="09" aria-pressed="false">09 · Pop-art</button>
+          </div>
+          <div class="logo-preview-stage"><span class="logo-artwork logo-artwork--07" data-logo-artwork><img src="/assets/logos/logo-07.webp" width="2172" height="724" alt="retroterkep – 07 Betétlap logó"></span></div>
+          <p class="logo-current" id="logo-current" role="status" aria-live="polite">Kiválasztva: 07 · Betétlap</p>
+          <a class="text-link" id="logo-version-link" href="?logo=07#logok">Ennek a logóváltozatnak a külön linkje</a>
+        </div>
+      </details>
+    </div>
+  </aside>
   <main id="tartalom">
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
@@ -109,7 +127,7 @@
     </div></section>
     <section class="contact section" id="kapcsolat" aria-labelledby="contact-title"><div class="container"><div class="contact-panel"><div><p class="eyebrow yellow-text">JÖHET AZ ÖTLET?</p><h2 id="contact-title">KÉSZÍTSÜNK<br>EGY <em>sajátot!</em></h2><p>Írj, mekkora mennyiségre és milyen céges megjelenésre gondoltál.</p></div><div class="contact-actions"><button class="button button-yellow" type="button" data-open-quote>KÉREK EGYEDI AJÁNLATOT</button><address><span>Faragó Ernő</span><a href="mailto:faragoerno60@gmail.com">faragoerno60@gmail.com</a><a href="tel:+36706005790">+36 70 600 5790</a></address></div></div></div></section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><div><a href="#tartalom" class="brand" aria-label="retrótérkép.hu – kezdőlap"><img src="/assets/retroterkep-logo.svg" width="250" height="48" alt="retrótérkép.hu"></a><p>FEDAR TRANS Kft. térképprojekt</p></div><div><button type="button" class="plain-link" data-open-privacy>Adatkezelési tájékoztató</button><p>retroterkep.hu</p></div></div></footer>
+  <footer class="site-footer"><div class="container footer-inner"><div><a href="#tartalom" class="brand" aria-label="retrótérkép.hu – kezdőlap"><span class="logo-frame"><span class="logo-artwork logo-artwork--07" data-logo-artwork><img src="/assets/logos/logo-07.webp" width="2172" height="724" alt="retroterkep – 07 Betétlap logó"></span></span></a><p>FEDAR TRANS Kft. térképprojekt</p></div><div><button type="button" class="plain-link" data-open-privacy>Adatkezelési tájékoztató</button><p>retroterkep.hu</p></div></div></footer>
   <div class="mobile-contact"><a href="tel:+36706005790">HÍVÁS</a><button type="button" data-open-quote>AJÁNLATOT KÉREK</button></div>
   <dialog id="quote-dialog" class="quote-dialog" aria-labelledby="quote-title">
     <div class="dialog-head"><div><p class="eyebrow pink-text">JÖHET AZ ÖTLET?</p><h2 id="quote-title">Kérj egyedi ajánlatot!</h2></div><button type="button" class="close-dialog" data-close-dialog aria-label="Ajánlatkérő bezárása">×</button></div>

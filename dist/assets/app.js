@@ -140,3 +140,37 @@ form.addEventListener('submit', async event => {
     submit.textContent = 'AJÁNLATKÉRÉS ELKÜLDÉSE';
   } finally {clearTimeout(timeout);}
 });
+
+// Keep the selected logo shareable without storing customer data.
+const logoConcepts = {
+  '07': {name: '07 · Betétlap', src: '/assets/logos/logo-07.webp', width: 2172, height: 724},
+  '08': {name: '08 · Útvonal', src: '/assets/logos/logo-08.webp', width: 1774, height: 887},
+  '09': {name: '09 · Pop-art', src: '/assets/logos/logo-09.webp', width: 1536, height: 1024}
+};
+const logoButtons = document.querySelectorAll('[data-logo-option]');
+function selectLogo(key, updateUrl = false) {
+  if (!Object.hasOwn(logoConcepts, key)) key = '07';
+  const concept = logoConcepts[key];
+  document.querySelectorAll('[data-logo-artwork]').forEach(artwork => {
+    artwork.classList.remove('logo-artwork--07', 'logo-artwork--08', 'logo-artwork--09');
+    artwork.classList.add(`logo-artwork--${key}`);
+    const image = artwork.querySelector('img');
+    image.width = concept.width;
+    image.height = concept.height;
+    image.alt = `retroterkep – ${concept.name} logó`;
+    image.src = concept.src;
+  });
+  logoButtons.forEach(button => {
+    const active = button.dataset.logoOption === key;
+    button.classList.toggle('selected', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  document.querySelector('#logo-current').textContent = `Kiválasztva: ${concept.name}`;
+  const url = new URL(window.location.href);
+  url.searchParams.set('logo', key);
+  document.querySelector('#logo-version-link').href = `${url.pathname}${url.search}#logok`;
+  if (updateUrl) window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+}
+logoButtons.forEach(button => button.addEventListener('click', () => selectLogo(button.dataset.logoOption, true)));
+selectLogo(new URL(window.location.href).searchParams.get('logo'));
+window.addEventListener('popstate', () => selectLogo(new URL(window.location.href).searchParams.get('logo')));
