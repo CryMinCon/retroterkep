@@ -141,19 +141,17 @@ form.addEventListener('submit', async event => {
   } finally {clearTimeout(timeout);}
 });
 
-// Keep the selected logo shareable without storing customer data.
-const logoConcepts = {
-  '07': {name: '07 · Betétlap', src: '/assets/logos/logo-07.webp', width: 2172, height: 724},
-  '08': {name: '08 · Útvonal', src: '/assets/logos/logo-08.webp', width: 1774, height: 887},
-  '09': {name: '09 · Pop-art', src: '/assets/logos/logo-09.webp', width: 1536, height: 1024}
-};
+// Complete, shareable logo catalogue; no customer data is stored.
+import {logoConcepts, logoGroups} from './logos/catalog.js?v=20261122-osszes-logo';
 const logoButtons = document.querySelectorAll('[data-logo-option]');
+const logoVariant = document.querySelector('#logo-variant');
+let selectedLogoKey = '07';
 function selectLogo(key, updateUrl = false) {
-  if (!Object.hasOwn(logoConcepts, key)) key = '07';
+  if (!Object.hasOwn(logoConcepts, key)) key = Object.hasOwn(logoGroups, key) ? Object.keys(logoConcepts).find(id => logoConcepts[id].group === key) : '07';
   const concept = logoConcepts[key];
+  selectedLogoKey = key;
   document.querySelectorAll('[data-logo-artwork]').forEach(artwork => {
-    artwork.classList.remove('logo-artwork--07', 'logo-artwork--08', 'logo-artwork--09');
-    artwork.classList.add(`logo-artwork--${key}`);
+    artwork.className = `logo-artwork logo-artwork--${key}`;
     const image = artwork.querySelector('img');
     image.width = concept.width;
     image.height = concept.height;
@@ -161,16 +159,27 @@ function selectLogo(key, updateUrl = false) {
     image.src = concept.src;
   });
   logoButtons.forEach(button => {
-    const active = button.dataset.logoOption === key;
+    const active = button.dataset.logoOption === concept.group;
     button.classList.toggle('selected', active);
     button.setAttribute('aria-pressed', String(active));
   });
+  const variants = Object.entries(logoConcepts).filter(([,entry]) => entry.group === concept.group);
+  logoVariant.replaceChildren(...variants.map(([id,entry]) => new Option(entry.name.split(' · ').slice(2).join(' · ') || 'Szabadforma', id)));
+  logoVariant.value = key;
+  logoVariant.closest('.logo-variant-field').hidden = variants.length < 2;
   document.querySelector('#logo-current').textContent = `Kiválasztva: ${concept.name}`;
   const url = new URL(window.location.href);
   url.searchParams.set('logo', key);
   document.querySelector('#logo-version-link').href = `${url.pathname}${url.search}#logok`;
   if (updateUrl) window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
 }
-logoButtons.forEach(button => button.addEventListener('click', () => selectLogo(button.dataset.logoOption, true)));
+logoButtons.forEach(button => button.addEventListener('click', () => {
+  const group = button.dataset.logoOption;
+  const form = logoConcepts[selectedLogoKey].form;
+  const match = Object.keys(logoConcepts).find(id => logoConcepts[id].group === group && logoConcepts[id].form === form)
+    || Object.keys(logoConcepts).find(id => logoConcepts[id].group === group);
+  selectLogo(match, true);
+}));
+logoVariant.addEventListener('change', () => selectLogo(logoVariant.value, true));
 selectLogo(new URL(window.location.href).searchParams.get('logo'));
 window.addEventListener('popstate', () => selectLogo(new URL(window.location.href).searchParams.get('logo')));
