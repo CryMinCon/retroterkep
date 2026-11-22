@@ -17,7 +17,7 @@
   <meta property="og:image:alt" content="Az eredeti távolságmutató térkép előlapja">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="preload" href="/assets/fonts/OpenSans-ExtraBold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/assets/style.css?v=20261121-polish">
+  <link rel="stylesheet" href="/assets/style.css?v=20261122-video">
   <script type="module" src="/assets/app.js?v=20261121-nocalc"></script>
 </head>
 <body>
@@ -30,7 +30,7 @@
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü megnyitása"><span></span><span></span></button>
       <nav id="main-nav" class="main-nav" aria-label="Fő navigáció">
-        <a href="#mi-ez">MI EZ?</a><a href="#hatoldal">HÁTOLDAL</a><a href="#info">INFÓ</a>
+        <a href="#mi-ez">MI EZ?</a><a href="#mukodes">MŰKÖDÉS</a><a href="#hatoldal">HÁTOLDAL</a><a href="#info">INFÓ</a>
         <button class="button button-pink" type="button" data-open-quote>KÉREK EGYET!</button>
       </nav>
     </div>
@@ -66,10 +66,16 @@
         </div>
       </div>
     </section>
-    <section class="how section" aria-labelledby="how-title">
-      <div class="container two-columns">
-        <div><p class="eyebrow pink-text">OLYAN, MINT RÉGEN. CSAK MÁS.</p><h2 id="how-title">TEKERD.<br>KERESD.<br>TALÁLD.</h2><p>A térkép kiválasztott kiindulópontból segít leolvasni a városok közötti távolságokat. A klasszikus papíralapú használat ma már önmagában is élmény.</p><div class="color-dots" aria-hidden="true"><i></i><i></i><i></i></div><span class="pill">10 500 TÁVOLSÁGADAT</span></div>
-        <figure class="how-product"><img class="map-image" src="/assets/eredeti-terkep.png" width="761" height="530" alt="A távolságmutató eredeti térképes oldala" loading="lazy"><figcaption>Szemléltető termékillusztráció</figcaption></figure>
+    <section class="how section" id="mukodes" aria-labelledby="how-title">
+      <div class="container">
+        <div class="how-intro">
+          <div><p class="eyebrow pink-text">OLYAN, MINT RÉGEN. CSAK MÁS.</p><h2 id="how-title">TEKERD.<br>KERESD.<br>TALÁLD.</h2></div>
+          <div class="how-description"><p>A térkép kiválasztott kiindulópontból segít leolvasni a városok közötti távolságokat. A klasszikus papíralapú használat ma már önmagában is élmény.</p><div class="color-dots" aria-hidden="true"><i></i><i></i><i></i></div><span class="pill">10 500 TÁVOLSÁGADAT</span></div>
+        </div>
+        <figure class="how-demo">
+          <video controls playsinline preload="none" width="1600" height="1200" poster="/mukodes/terkep-mukodese.webp?v=20261122-javitott" aria-label="A távolságmutató működése, 10 másodperces néma videó" aria-describedby="how-demo-description"><source src="/mukodes/terkep-mukodese.mp4?v=20261122-javitott" type="video/mp4"><p><a href="/mukodes/">Nézd meg a működési bemutatót.</a></p></video>
+          <figcaption><p id="how-demo-description">Indítsd el a videót! A betétlap jobbra csúszik, a földgömb nyílásában Kecskemét neve, a városoknál a kilométerértékek jelennek meg. A minta öt várost mutat, közelítő adatokkal.</p><a class="text-link" href="/mukodes/" target="_blank" rel="noopener">Bemutató megnyitása külön</a></figcaption>
+        </figure>
       </div>
     </section>
     <section class="back-section section" id="hatoldal" aria-labelledby="back-title">
