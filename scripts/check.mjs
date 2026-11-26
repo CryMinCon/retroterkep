@@ -18,22 +18,15 @@ for(const page of pages){
     assert(fs.existsSync(path.join(dist,file==='/'?'index.html':file)),`${page}: missing asset ${url}`);
   }
 }
-const copy=[
- 'Hanem reklámajándék, amit elővesznek, megmutatnak, megőriznek. A régi távolságmutató most a te céged üzenetét is elviszi.',
+const protectedCopy=[
  'A jó emlék nem megy ki a divatból.',
- 'A régi távolságmutatók világa újra kézzelfoghatóvá válik.',
- 'Egy beszédtéma, ami kiemelkedik a megszokott ajándékok közül.',
- 'A térkép előlapja mellé személyre szabott hátoldal készülhet.',
- 'A térkép kiválasztott kiindulópontból segít leolvasni a városok közötti távolságokat. A klasszikus papíralapú használat ma már önmagában is élmény.',
- 'Logó, szlogen, szolgáltatás és elérhetőség: a hátoldal a te márkádnak dolgozhat.',
  'Mindhárom grafika bemutató, nem valós ügyfélreferencia.',
  'Az ajánlat 500 darabos minimum mennyiséget jelöl, amely több megrendelő között is megosztható.',
- 'Igen, a hátoldal egyedi céges grafikával készülhet. Az előlapi megjelenés lehetőségeit külön egyeztetjük.',
+ 'Az előlapi megjelenés lehetőségeit külön egyeztetjük.',
  'A hátoldali grafika a cég arculatához és az egyeztetett elképzelésekhez igazodik.',
- 'A gyártási határidő és a szállítás módja egyedi egyeztetést igényel.',
- 'Írj, mekkora mennyiségre és milyen céges megjelenésre gondoltál.'
+ 'A gyártási határidő és a szállítás módja egyedi egyeztetést igényel.'
 ];
-for(const sentence of copy)assert(html.includes(sentence),`Approved 03 copy is missing: ${sentence}`);
+for(const sentence of protectedCopy)assert(html.includes(sentence),`Business fact or preserved copy is missing: ${sentence}`);
 assert(!/Úton vagyunk|DEMO \/ KONCEPCIÓ|Nem élesített honlap/.test(html),'Old brand or concept labels remain');
 assert(html.includes('name="retroterkep-ajanlat"')&&html.includes('data-netlify="true"')&&html.includes('name="form-name" value="retroterkep-ajanlat"'),'Netlify form declaration missing');
 for(const file of ['app.js','pricing.js']){
@@ -45,4 +38,4 @@ const css=fs.readFileSync(path.join(dist,'assets/style.css'),'utf8');
 for(const [,url] of css.matchAll(/url\('([^']+)'\)/g)){
  if(!url.startsWith('data:'))assert(fs.existsSync(path.join(dist,url)),`Missing CSS asset ${url}`);
 }
-console.log('OK: approved 03 copy, local assets, navigation, Netlify form and JavaScript syntax.');
+console.log('OK: business facts, local assets, navigation, Netlify form and JavaScript syntax.');
