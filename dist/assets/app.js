@@ -29,35 +29,6 @@ document.querySelectorAll('button[data-face]').forEach(button => {
   });
 });
 
-const designs = {
-  transport: 'MESSZIRE<br>VISZÜNK<br>MINDENT.',
-  garage: 'A JÓ ÚT<br>ITT KEZDŐDIK.',
-  anniversary: '25 ÉVE<br>EGYÜTT.'
-};
-function setDesign(design) {
-  if (!Object.hasOwn(designs, design)) return;
-  const back = document.querySelector('#ad-back');
-  back.dataset.design = design;
-  document.querySelector('#back-slogan').innerHTML = designs[design];
-  back.querySelector('.back-services').hidden = design !== 'transport';
-  document.querySelectorAll('button[data-design]').forEach(button => {
-    const selected = button.dataset.design === design;
-    button.classList.toggle('selected', selected);
-    button.setAttribute('aria-pressed', String(selected));
-  });
-}
-document.querySelectorAll('button[data-design]').forEach(button => button.addEventListener('click', () => setDesign(button.dataset.design)));
-setDesign('transport');
-const companyPreview = document.querySelector('#company-preview');
-function updateCompany() {
-  const company = companyPreview.value.trim() || 'SÁLAI CÉGCSOPORT';
-  document.querySelectorAll('.sample-company').forEach(element => {element.textContent = company;});
-}
-document.querySelector('#apply-company').addEventListener('click', updateCompany);
-companyPreview.addEventListener('keydown', event => {
-  if (event.key === 'Enter') {event.preventDefault(); updateCompany();}
-});
-
 const quoteDialog = document.querySelector('#quote-dialog');
 const privacyDialog = document.querySelector('#privacy-dialog');
 const quoteQuantity = document.querySelector('#quote-quantity');

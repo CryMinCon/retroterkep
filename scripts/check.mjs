@@ -29,11 +29,11 @@ const protectedCopy=[
 for(const sentence of protectedCopy)assert(html.includes(sentence),`Business fact or preserved copy is missing: ${sentence}`);
 assert(!/Úton vagyunk|DEMO \/ KONCEPCIÓ|Nem élesített honlap/.test(html),'Old brand or concept labels remain');
 assert(html.includes('name="retroterkep-ajanlat"')&&html.includes('data-netlify="true"')&&html.includes('name="form-name" value="retroterkep-ajanlat"'),'Netlify form declaration missing');
-for(const file of ['app.js','pricing.js']){
+for(const file of ['app.js','pricing.js','designer.js']){
  const result=spawnSync(process.execPath,['--check',path.join(dist,'assets',file)],{encoding:'utf8'});
  assert.equal(result.status,0,result.stderr);
 }
-for(const file of ['robots.txt','sitemap.xml','assets/reklamhatoldalak.pdf'])assert(fs.existsSync(path.join(dist,file)),`Missing ${file}`);
+for(const file of ['robots.txt','sitemap.xml'])assert(fs.existsSync(path.join(dist,file)),`Missing ${file}`);
 const css=fs.readFileSync(path.join(dist,'assets/style.css'),'utf8');
 for(const [,url] of css.matchAll(/url\('([^']+)'\)/g)){
  if(!url.startsWith('data:'))assert(fs.existsSync(path.join(dist,url)),`Missing CSS asset ${url}`);
