@@ -50,6 +50,10 @@ def native_map(v):
  d.rounded_rectangle((x+PW-4,round(CH*.43),x+PW+31,round(CH*.57)),radius=8,fill=PINK)
  im.alpha_composite(front,(0,0))
  return im
+@lru_cache(4)
+def scaled_map(v):
+ scene=native_map(v)
+ return scene.resize((round(scene.width*S),FH),Image.Resampling.LANCZOS)
 base=Image.new('RGBA',(W,H),CREAM);d=ImageDraw.Draw(base);d.rectangle((0,0,W,6),fill=PINK)
 d.text((35,26),'RetroTérkép',font=font(32,True),fill=INK)
 d.text((375,26),'VÁLASSZ VÁROST. OLVASD LE A TÁVOLSÁGOT.',font=font(27,True),fill=INK)
@@ -71,9 +75,12 @@ def lens_state(t):
   if t<start:return (previous,points[previous],1)
   if t<start+.85:
    q=ease((t-start)/.85);a=points[previous];b=points[name]
-   return (name,(a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q),1)
+   # A destination is selected only after the lens has actually reached it.
+   # During travel there is deliberately no city/distance readout.
+   return (None,(a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q),1)
   previous=name
  return (previous,points[previous],1-ease((t-21.2)/.8))
+
 def magnifier(im,scene,point,opacity):
  cx,cy=PX+point[0]*S,PY+point[1]*S
  r=146;zoom=2.25;radius_native=r/(S*zoom)
@@ -102,8 +109,8 @@ def frame(t):
  elif t<22.3:v=1
  elif t<25:v=1-ease((t-22.3)/2.7)
  else:v=0
- scene=native_map(round(v,5));im=base.copy()
- im.alpha_composite(scene.resize((round(scene.width*S),FH),Image.Resampling.LANCZOS),(PX,PY))
+ v=round(v,5);scene=native_map(v);im=base.copy()
+ im.alpha_composite(scaled_map(v),(PX,PY))
  d=ImageDraw.Draw(im);d.rectangle((PX-1,PY-1,PX+FW+1,PY+FH+1),outline=INK,width=2)
  lens=lens_state(t);name=lens[0] if lens else None
  d.text((1320,169),'KIINDULÓ VÁROS',font=font(16,True),fill=MUTED)
@@ -113,6 +120,9 @@ def frame(t):
   d.text((1320,301),'A NAGYÍTÓ ALATT',font=font(15,True),fill=MUTED)
   d.text((1320,343),name,font=font(27,True),fill=INK)
   d.text((1320,393),selected[name][1]+' km',font=font(38,True),fill=PINK)
+ elif lens and name is None:
+  d.text((1320,301),'NAGYÍTÓ MOZGÁSBAN',font=font(15,True),fill=MUTED)
+  d.text((1320,347),'A következő\nvárosra közelítünk.',font=font(20),fill=INK,spacing=7)
  else:
   d.text((1320,307),'A földgömb\nnyílásában\nválasztható ki\na kiinduló város.',font=font(20),fill=INK,spacing=7)
  for j,(city,(_,value)) in enumerate(selected.items()):
@@ -129,14 +139,17 @@ def frame(t):
  d.rounded_rectangle((34,1040,1566,1110),radius=11,fill=INK)
  d.text((800,1075),phase,font=font(25,True),fill=CREAM,anchor='mm')
  return im.convert('RGB')
-for t in [0,2.3,4.4,7.9,10.8,13.8,16.8,19.8,24.5]:frame(t).save(REVIEW/f'frame-{t}.jpg',quality=93)
-frame(7.9).save(OUT/'terkep-nagyitos-bemutato.webp',quality=93,method=6)
-if '--stills' in sys.argv:sys.exit(0)
-command=['ffmpeg','-hide_banner','-loglevel','error','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-an','-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart',str(OUT/'terkep-nagyitos-bemutato.mp4')]
-process=subprocess.Popen(command,stdin=subprocess.PIPE)
-for i in range(DURATION*FPS):
- process.stdin.write(frame(i/FPS).tobytes())
- if i%125==0:print(f'{i}/{DURATION*FPS}',flush=True)
-process.stdin.close()
-if process.wait()!=0:raise RuntimeError('ffmpeg failed')
-print('Done:',OUT/'terkep-nagyitos-bemutato.mp4',flush=True)
+def main():
+ for t in [0,2.3,4.4,6.7,7.9,9.7,10.8,12.7,13.8,15.7,16.8,18.7,19.8,24.5]:frame(t).save(REVIEW/f'frame-{t}.jpg',quality=93)
+ frame(7.9).save(OUT/'terkep-nagyitos-bemutato-v2.webp',quality=93,method=6)
+ if '--stills' in sys.argv:return
+ command=['ffmpeg','-hide_banner','-loglevel','error','-y','-f','rawvideo','-vcodec','rawvideo','-pix_fmt','rgb24','-s',f'{W}x{H}','-r',str(FPS),'-i','-','-an','-c:v','libx264','-preset','medium','-crf','20','-pix_fmt','yuv420p','-movflags','+faststart',str(OUT/'terkep-nagyitos-bemutato-v2.mp4')]
+ process=subprocess.Popen(command,stdin=subprocess.PIPE)
+ for i in range(DURATION*FPS):
+  process.stdin.write(frame(i/FPS).tobytes())
+  if i%125==0:print(f'{i}/{DURATION*FPS}',flush=True)
+ process.stdin.close()
+ if process.wait()!=0:raise RuntimeError('ffmpeg failed')
+ print('Done:',OUT/'terkep-nagyitos-bemutato-v2.mp4',flush=True)
+
+if __name__ == "__main__":main()

@@ -53,3 +53,5 @@ Open Sans (400, 600, 800), valamint URW P052 Italic. A mellékelt fontlicencek a
 A főoldal és a `/mukodes/` oldal ugyanazt a 26 másodperces MP4-et használja. A nagyító az eredeti réteges térkép részletét nagyítja, nem külön ráírt számokat. Egyetlen közös betétlap hordozza a Kecskemét feliratot és az öt megadott bemutatóértéket; a többi nyílás üres.
 
 Újrarenderelés: `python scripts/render-demo.py` (Pillow és ffmpeg szükséges). A `--stills` kapcsoló csak az ellenőrző képeket és a posztert készíti el. A forrás a `scripts/demo-assets/` mappában van. A régi videó közvetlen hivatkozásokhoz megmarad.
+
+A nagyító mozgatása közben nincs célváros- és km-kiírás: az csak a megállás után jelenik meg. A szinkron ellenőrzése: `python scripts/demo.test.py`.
