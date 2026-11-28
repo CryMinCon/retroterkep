@@ -27,7 +27,7 @@ Az új kérések nem e-mailes hírlevél-feliratkozások. Az oldal nem tartalmaz
 ## Tartalom és élesítési állapot
 
 - Eredeti térképkép: a rendelkezésre bocsátott termékismertetőből, képarányát megtartva.
-- Korabeli reklámhátoldalak: külön, kis méretű PDF-ben, a hátoldal szakaszból elérhetően.
+- Korabeli reklámhátoldalak: nagyítható képgalériában. A korábbi PDF-letöltés eltávolítva.
 - A bemutató hátoldali grafikák nem ügyfélreferenciák.
 - Az egységárak és fizetési feltételek a jóváhagyott 03-as anyagban szereplő eredeti ajánlatból származnak.
 - Az űrlaphoz hibaüzenet és e-mailes folytatás tartozik, a sikeroldalt csak sikeres kiszolgálói válasz után nyitja meg a JavaScript.
@@ -46,3 +46,10 @@ Open Sans (400, 600, 800), valamint URW P052 Italic. A mellékelt fontlicencek a
 - Az ajánlatkérő átvette a kiválasztott mennyiséget. A beágyazott adatkezelési ablak bezárása után az ajánlatkérő nyitva maradt, és a görgetés zárolása helyesen állt vissza.
 - A cégnév-előnézet és a hátoldali minták váltása működött.
 - Tényleges ajánlatkérés nem került elküldésre. Az éles Netlify-kézbesítés, e-mail-értesítés, domain és HTTPS még nincs igazolva.
+
+
+## Nagyítós működési bemutató
+
+A főoldal és a `/mukodes/` oldal ugyanazt a 26 másodperces MP4-et használja. A nagyító az eredeti réteges térkép részletét nagyítja, nem külön ráírt számokat. Egyetlen közös betétlap hordozza a Kecskemét feliratot és az öt megadott bemutatóértéket; a többi nyílás üres.
+
+Újrarenderelés: `python scripts/render-demo.py` (Pillow és ffmpeg szükséges). A `--stills` kapcsoló csak az ellenőrző képeket és a posztert készíti el. A forrás a `scripts/demo-assets/` mappában van. A régi videó közvetlen hivatkozásokhoz megmarad.
